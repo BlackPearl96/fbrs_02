@@ -22,7 +22,10 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  resources :likes
+
+  post "/like", to: "likes#create"
+  delete "/unlike", to: "likes#destroy"
+  delete "/unreview", to: "reviews#destroy"
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :relationships, only: [:create, :destroy]
   resources :suggests

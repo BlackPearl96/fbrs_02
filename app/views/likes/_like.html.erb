@@ -1,4 +1,7 @@
-<%= form_for(@like, remote: true) do |f| %>
-  <%= f.hidden_field :book_id, value: @book.id %>
-  <%= f.submit t("view.likes.like"), class: "btn btn-success" %>
+<% if like? @book %>
+  <%= link_to "unlike", unlike_path(book_id: @book), method: :delete, remote: true,
+    class: "btn btn-danger", id: "like" %>
+<% else %>
+  <%= link_to "like", like_path(book_id: @book), method: :post, remote: true,
+    class: "btn btn-success", id: "like" %>
 <% end %>

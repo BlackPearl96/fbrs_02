@@ -1,5 +1,9 @@
-<%= simple_form_for([@book, @book_reivew]) do |f| %>
-  <div id="rating-form"><label><%= t "view.review.rate" %></label></div>
-  <%= f.input :content %>
-  <%= f.button :submit, class: "btn-custom2" %>
-<% end %>
+<div id="comments_<%= @book.id %>">
+  <h3 id="section-comment-title"><b><%= t "view.review.new_review" %></b></h3>
+  <%= simple_form_for [@book, @review], remote: true do |f| %>
+    <div id="rating-form"><b><%= t "view.review.rate" %></b></div>
+    <%= f.input :content %>
+    <%= f.button :submit, class: "btn btn-success btn-md" %>
+  <% end %>
+  <div class="tg-sectionhead"></div>
+</div>

@@ -43,9 +43,7 @@
                       <%= image_tag @book.book_img.url(:book_show), class: "book_show" %>
                     </figure>
                   </div>
-                  <div class="add_review">
-                    <%= link_to t("view.books.show.addreview"), new_book_review_path(@book) %>
-                  </div>
+
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                   <div class="tg-productcontent">
@@ -55,39 +53,37 @@
                     <div class="tg-booktitle">
                       <h3><%= @book.title %></h3>
                     </div>
-                    <span class="tg-bookwriter"><%= t "view.books.show.author" %>
+                    <span class="tg-bookwriter"><b><%= t "view.books.show.author" %></b>
                       <%= @book.author %>
                     </span>
-                    <span class="tg-bookwriter"><%= t "view.books.show.by" %>
+                    <span class="tg-bookwriter"><b><%= t "view.books.show.by" %></b>
                       <%= @book.publisher %>
                     </span>
-                    <h4><%= t "view.books.show.avg_rating" %> </h4>
+                    <h4><b><%= t "view.books.show.avg_rating" %></b> </h4>
                     <div class="average_review-rating" data-score="<%= @book.rate_points %>">
                     </div>
                     <span>
                     <div class="like-unlike">
-                      <div class="count_like">
-                        <i><b><%= @book.likes.size %></b> <i class="fas fa-thumbs-up"></i></i>
+                      <div class=" count_like_<%= @book.id %> fa fa-thumbs-up fa-2x count_like ">
+                        <%= @book.likes.count %>
                       </div>
-                      <% if logged_in? %>
-                        <% if like? @book %>
-                          <%= link_to like_path(book_id: @book.id), method: :delete,
-                            class: "btn btn-danger" do %>
-                            <%= t "view.books.show.unlike" %>
-                          <% end %>
-                        <% else %>
-                          <%= render "likes/like" %>
+                      <div id="like" class="like_<%= @book.id %>">
+                        <% if logged_in? %>
+                          <%= render partial: "likes/like", local:{book: @book} %>
                         <% end %>
-                      <% else %>
-                        <%= link_to login_path do %>
-                          <%= render "likes/like" %>
-                        <% end %>
-                      <% end %>
+                      </div>
                     </div>
-                    <div><%= t "view.books.show.base" %>
+                    <div class="count_review"><b><%= t "view.books.show.base" %></b>
                       <%= t("count_review", count: @book.reviews.size) %>
                     </div>
                     </span>
+                    <div>
+                      <b><%= t "view.books.show.description:" %></b>
+                      <span class="tg-bookwriter">
+                        <%= @book.description %>
+                      </span>
+                    </div>
+
                   </div>
                 </div>
                 <div class="tg-productdescription">
@@ -109,15 +105,25 @@
                         </div>
                       </div>
                       <div role="tabpanel" class="tg-tab-pane tab-pane active" id="review">
-                        <div class="tg-description">
-                          <%= render @book.reviews %>
+
+                      <div class="new-review-form">
+                        <%= render partial: "reviews/form", local:{book_id: @book} %>
+                      </div>
+
+                      <div id="reviews" class="tg-description">
+                        <%= render partial: "reviews/review", collection: @reviews, as: :review %>
+                      </div>
+                        <div id="paginator">
+                          <%= paginate @reviews, remote: true %>
                         </div>
+
                       </div>
                     </div>
                   </div>
                   <% if @books.any? %>
+                  <div class="tg-sectionhead"></div>
                     <div class="tg-sectionhead">
-                      <h2><span><%= t "view.books.show.new_book" %></span><%= t "view.books.show.relate" %></h2>
+                      <h2><%= t "view.books.show.relate" %></h2>
                     </div>
                     <%= render @books %>
                   <% else %>

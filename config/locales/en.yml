@@ -112,6 +112,7 @@ en:
       unlike_success: "Unlike a book success"
       unlike_fail: "Unlike a book fail"
       load_like: "Sorry, no like"
+      un_like: "Sorry, not unlike"
     admin:
       fail: "data not found"
   view:
@@ -200,7 +201,7 @@ your password will stay as it is."
     review:
       created_at: "Reviews create at %{at}"
       rate: "Rating:"
-      new_review: "New Review Book:"
+      new_review: "Reviews:"
       edit_review: "Edit Reviews Book:"
       edit: "Edit"
       delete: "Delete"

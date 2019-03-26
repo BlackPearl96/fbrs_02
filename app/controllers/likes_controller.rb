@@ -1,35 +1,48 @@
 class LikesController < ApplicationController
-  before_action :load_like, only: :destroy
+  before_action :load_book, only: [:create, :destroy]
+  before_action :load_unlike, only: :destroy
 
   def create
-    @like = current_user.likes.build likes_params
-    if @like.save
-      flash[:success] = t "controller.likes.like_success"
-    else
-      flash[:danger] = t "controller.likes.like_fail"
+    unless check_like?
+      @like = current_user.likes.create(book_id: @book.id)
+      # target_activity @like
+      respond_to do |format|
+        format.html{ redirect_to request.referrer }
+        format.js
+      end
     end
-    redirect_to @like.book
   end
 
   def destroy
-    if @like.destroy
-      flash[:success] = t "controller.likes.unlike_success"
+    if check_like? && @unlike.destroy
+      # target_activity @unlike
+      respond_to do |format|
+        format.html{redirect_to request.referrer}
+        format.js
+      end
     else
       flash[:danger] = t "controller.likes.unlike_fail"
+      redirect_to request.referrer
     end
-    redirect_to @like.book
   end
 
   private
 
-  def likes_params
-    params.require(:like).permit :book_id
+  def check_like?
+    Like.by_like_user(current_user.id, params[:book_id]).exists?
   end
 
-  def load_like
-    @like = current_user.likes.find_by book_id: params[:book_id]
-    return if @like
+  def load_book
+    @book = Book.find_by id: params[:book_id]
+    return if @book
     flash[:danger] = t "controller.likes.load_like"
     redirect_to root_path
+  end
+
+  def load_unlike
+    @unlike = current_user.likes.find_by(book_id: @book.id)
+    return if @book
+    flash[:danger] = t "controller.likes.un_like"
+    redirect_to book_path(@book)
   end
 end

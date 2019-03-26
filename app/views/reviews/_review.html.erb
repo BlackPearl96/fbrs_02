@@ -1,34 +1,37 @@
-<div class="review">
-  <div><%= review.user_name %>: </div>
-  <div class="review-rating" data-score="<%= review.rate %>"></div>
+<div id="review_<%= review.id %>" >
+  <div><b><%= review.user_name %>:</b> </div>
+  <div id="rate_<%= review.id %>" class="review-rating" data-score="<%= review.rate %>"></div>
+  <div><%= t("view.review.created_at", at: review.created_at) %></div>
   <div class="review-comment"><p><%= review.content %></p></div></br>
-  <div>
-    <%= t("view.review.created_at", at: review.created_at) %>
-  </div>
-  <% if logged_in? && current_user?(review.user) %>
-      <div class="links btn-group">
-        <%= link_to t("view.review.edit"), edit_book_review_path(review.book, review),
-          class: "btn btn-custom" %>
-        <%= link_to t("view.review.delete"), book_review_path(review.book, review), method:
-          :delete, data: {confirm: t("view.review.sure") },
-          class: "btn btn-custom" %>
-      </div>
-  <% end %>
-  <% if review.comments.any? %>
-    <% review.comments.each do |comment| %>
-      <%= render partial: "comments/comment", locals: {comment: comment,
-        book: review.book} %>
-    <% end %>
-  <% end %>
-  <%= simple_form_for([@book, review, review.comments.build]) do |f| %>
-    <div class="comment">
-      <div class="content">
-        <%= f.input :content, class: "cmt" %>
-      </div>
-      <div class="btn-custom3">
-        <%= f.button :submit, class: "btn-custom3" %>
-      </div>
-    </div>
-  <% end %>
-</div>
 
+  <div class="review-comment" >
+  <div class="review">
+    <% if logged_in? && current_user?(review.user) %>
+      <div id="delete_<%=@book.id%>" class="links btn-group">
+        <%= link_to t("view.review.delete"), book_review_path(review.book, review),remote: true,
+          method: :delete, class: "btn btn-success btn-md" %>
+      </div>
+    <% end %>
+    <% if review.comments.any? %>
+      <% review.comments.each do |comment| %>
+        <%= render partial: "comments/comment", locals: {comment: comment,
+          book: review.book} %>
+      <% end %>
+    <% end %>
+      <div id="reply_<%= review.id %>">
+        <%= simple_form_for [@book, review, review.comments.build], remote: true do |f| %>
+            <div class="comment">
+              <div class="content">
+                <%= f.input :content, class: "cmt" %>
+              </div>
+              <div class="btn-custom3">
+                <%= f.button :submit, class: "btn-custom3" %>
+              </div>
+            </div>
+          <% end %>
+      <div class="tg-sectionhead"></div>
+      </div>
+  </div>
+
+  </div>
+</div>

@@ -12,21 +12,23 @@ class CommentsController < ApplicationController
     @comment = @review.comments.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      flash[:success] = t "controller.comments.create_comment"
-      redirect_to book_path(@book)
+      respond_to do |format|
+        format.html { redirect_to request.referrer }
+        format.js
+      end
     else
-      flash[:danger] = t "controller.comments.create_comment_fail"
       render :new
     end
   end
 
   def destroy
     if @comment.destroy
-      flash[:success] = t "controller.comments.delete_comment"
-      redirect_to book_path(@book)
+      respond_to do |format|
+        format.html { redirect_to request.referrer }
+        format.js
+      end
     else
-      flash[:danger] = t "controller.comments.delete_comment_fail"
-      redirect_to root_path
+      redirect_to books_path
     end
   end
 
