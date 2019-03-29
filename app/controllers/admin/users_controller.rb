@@ -1,6 +1,7 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
   layout "admin"
   before_action :load_user, only: :destroy
+  load_and_authorize_resource
 
   def index
     @users = User.sort_by_created_at.paginate page: params[:page],

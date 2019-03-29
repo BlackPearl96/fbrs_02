@@ -1,6 +1,7 @@
 class SuggestsController < ApplicationController
   before_action :load_suggest, only: :destroy
   before_action :suggest_by_user, only: :index
+  load_and_authorize_resource
 
   def index; end
 

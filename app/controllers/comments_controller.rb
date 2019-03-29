@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :load_book
   before_action :load_review
   before_action :load_comment, except: %i(new create)
+  load_and_authorize_resource
 
   def new
     @comment = Comment.new

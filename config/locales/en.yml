@@ -8,6 +8,7 @@ en:
   pass_reset: "Password reset"
   sure: "You a sure!"
   error: "An error has occurred, please try again!"
+  denied: "does not exist!"
   layouts:
     application:
       app: "application"
@@ -122,6 +123,9 @@ en:
       un_like: "Sorry, not unlike"
     admin:
       fail: "data not found"
+      users:
+        index:
+          denied: "does not exist!"
   view:
     shared:
       following: "following"

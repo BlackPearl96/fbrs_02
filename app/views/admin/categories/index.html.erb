@@ -1,3 +1,4 @@
+<%= render "layouts/left_admin" %>
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
     <h2><%= t (".category") %></h2>
@@ -21,7 +22,7 @@
               </tr>
             </thead>
             <tbody>
-              <%= render patial: "category", collection: load_categories, as: :category %>
+              <%= render partial: "category", collection: load_categories, as: :category %>
             </tbody>
           </table>
         </div>

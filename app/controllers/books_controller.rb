@@ -3,6 +3,8 @@ class BooksController < ApplicationController
   before_action :admin_user, except: %i(index show filter search_like)
   before_action :load_books_by_category, only: %i(show filter)
   before_action :build_reviews, only: :show
+  load_and_authorize_resource
+
 
   def index
     @books = Book.newest

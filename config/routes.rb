@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   resources :suggests
 
   namespace :admin do
-    root "static_pages#index"
+    root to: "static_pages#index"
     resources :books, except: :show
     resources :categories, except: [:edit, :update, :show]
     resources :users, only: [:index, :destroy]

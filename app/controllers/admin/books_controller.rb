@@ -1,6 +1,8 @@
-class Admin::BooksController < ApplicationController
+class Admin::BooksController < Admin::BaseController
   layout "admin"
   before_action :load_book, except: %i(index new create)
+  load_and_authorize_resource
+
 
   def index
     @books = Book.newest.by_category(params[:category_id]).paginate page: params[:page],

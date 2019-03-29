@@ -1,6 +1,7 @@
-class Admin::CategoriesController < ApplicationController
+class Admin::CategoriesController < Admin::BaseController
   layout "admin"
   before_action :find_category, only: :destroy
+  load_and_authorize_resource
 
   def index
     @categories = Category.sort_by_name.paginate page: params[:page],

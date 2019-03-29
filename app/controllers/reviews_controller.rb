@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :load_book, only: %i(create destroy)
   before_action :load_review, only: :destroy
+  load_and_authorize_resource
 
   def new; end
 

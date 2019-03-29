@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
   before_action :load_user, only: :show
-  # before_action :correct_user
-  # before_action :admin_user, only: :destroy
   before_action :load_follow, :load_unfollow, only: %i(following followers show)
 
   def index
@@ -11,20 +10,20 @@ class UsersController < ApplicationController
 
   def show; end
 
-  def update_role
-    if @user.admin?
-      @user.user!
-      flash[:success] = t "controller.user.setuser"
-      redirect_to request.referrer
-    elsif @user.user?
-      @user.admin!
-      flash[:success] = t "controller.user.setadmin"
-      redirect_to request.referrer
-    else
-      flash[:danger] = t "controller.user.nofound"
-      redirect_to request.referrer
-    end
-  end
+  # def update_role
+  #   if @user.admin?
+  #     @user.user!
+  #     flash[:success] = t "controller.user.setuser"
+  #     redirect_to request.referrer
+  #   elsif @user.user?
+  #     @user.admin!
+  #     flash[:success] = t "controller.user.setadmin"
+  #     redirect_to request.referrer
+  #   else
+  #     flash[:danger] = t "controller.user.nofound"
+  #     redirect_to request.referrer
+  #   end
+  # end
 
   def destroy
     if @user.destroy
@@ -63,14 +62,6 @@ class UsersController < ApplicationController
     flash[:danger] = t "controller.user.find_user_error"
     redirect_to root_path
   end
-
-  # def correct_user
-  #   redirect_to root_path unless current_user
-  # end
-
-  # def admin_user
-  #   redirect_to root_path unless current_user.admin?
-  # end
 
   def load_follow
     @follow = current_user.active_relationships.build
