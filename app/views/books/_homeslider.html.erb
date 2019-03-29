@@ -55,7 +55,7 @@
               <div class="tg-status">
                 <div class="tg-statuscontent">
                   <span class="tg-statusicon"><i class="icon-book"></i></span>
-                  <h2>Books we have<span>24,179,213</span></h2>
+                  <h2>Books we have<span><%= Book.count %></span></h2>
                 </div>
               </div>
             </div>
@@ -65,7 +65,7 @@
               <div class="tg-status">
                 <div class="tg-statuscontent">
                   <span class="tg-statusicon"><i class="icon-user"></i></span>
-                  <h2>Total members<span>15,179,213</span></h2>
+                  <h2>Total members<span><%= User.count %></span></h2>
                 </div>
               </div>
             </div>
@@ -75,7 +75,7 @@
               <div class="tg-status">
                 <div class="tg-statuscontent">
                   <span class="tg-statusicon"><i class="icon-heart"></i></span>
-                  <h2>Happy users<span>1,267,539</span></h2>
+                  <h2>Happy users<span><%= Like.count %></span></h2>
                 </div>
               </div>
             </div>

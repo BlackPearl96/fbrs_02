@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-  before_action :logged_in_user, only: %i(new create destroy)
   before_action :load_book, only: %i(create destroy)
   before_action :load_review, only: :destroy
 
@@ -50,10 +49,4 @@ class ReviewsController < ApplicationController
     redirect_to root_path
   end
 
-  def logged_in_user
-    return if logged_in?
-    store_location
-    flash[:danger] = t "please_login"
-    redirect_to login_path
-  end
 end

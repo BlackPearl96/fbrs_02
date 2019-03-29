@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, except: %i(show new create)
-  before_action :load_user, except: %i(index new create)
-  before_action :correct_user, only: %i(edit update)
-  before_action :admin_user, only: %i(destroy)
+  before_action :load_user, only: :show
+  # before_action :correct_user
+  # before_action :admin_user, only: :destroy
   before_action :load_follow, :load_unfollow, only: %i(following followers show)
 
   def index
@@ -12,29 +11,18 @@ class UsersController < ApplicationController
 
   def show; end
 
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      log_in @user
-      flash[:success] = t "controller.user.create_user"
-      redirect_to @user
+  def update_role
+    if @user.admin?
+      @user.user!
+      flash[:success] = t "controller.user.setuser"
+      redirect_to request.referrer
+    elsif @user.user?
+      @user.admin!
+      flash[:success] = t "controller.user.setadmin"
+      redirect_to request.referrer
     else
-      render :new
-    end
-  end
-
-  def edit; end
-
-  def update
-    if @user.update_attributes user_params
-      flash[:success] = t "controller.user.update_profile"
-      redirect_to @user
-    else
-      render :edit
+      flash[:danger] = t "controller.user.nofound"
+      redirect_to request.referrer
     end
   end
 
@@ -76,20 +64,13 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def logged_in_user
-    return if logged_in?
-    store_location
-    flash[:danger] = t "controller.user.please_login"
-    redirect_to login_path
-  end
+  # def correct_user
+  #   redirect_to root_path unless current_user
+  # end
 
-  def correct_user
-    redirect_to root_path unless current_user?(@user)
-  end
-
-  def admin_user
-    redirect_to root_path unless current_user.admin?
-  end
+  # def admin_user
+  #   redirect_to root_path unless current_user.admin?
+  # end
 
   def load_follow
     @follow = current_user.active_relationships.build

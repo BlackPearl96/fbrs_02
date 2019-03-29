@@ -68,7 +68,7 @@
                         <%= @book.likes.count %>
                       </div>
                       <div id="like" class="like_<%= @book.id %>">
-                        <% if logged_in? %>
+                        <% if user_signed_in? %>
                           <%= render partial: "likes/like", local:{book: @book} %>
                         <% end %>
                       </div>
@@ -104,6 +104,7 @@
                           <p><%= @book.content %></p>
                         </div>
                       </div>
+                      <% if user_signed_in? %>
                       <div role="tabpanel" class="tg-tab-pane tab-pane active" id="review">
 
                       <div class="new-review-form">
@@ -118,6 +119,7 @@
                         </div>
 
                       </div>
+                      <% end %>
                     </div>
                   </div>
                   <% if @books.any? %>

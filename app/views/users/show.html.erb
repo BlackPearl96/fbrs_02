@@ -1,4 +1,3 @@
-<% provide(:title, @user.name) %>
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
@@ -11,5 +10,5 @@
       <%= render "shared/stats" %>
     </section>
   </aside>
-    <%= render "follow_form" if logged_in? %>
+    <%= render "follow_form" if user_signed_in? %>
 </div>

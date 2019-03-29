@@ -1,5 +1,4 @@
 class RelationshipsController < ApplicationController
-  before_action :logged_in_user
   before_action :load_relationship, only: :destroy
 
   def create
@@ -39,12 +38,5 @@ class RelationshipsController < ApplicationController
     return if @relationship
     flash[:danger] = t "no_data"
     redirect_to current_user
-  end
-
-  def logged_in_user
-    return if logged_in?
-    store_location
-    flash[:danger] = t "please_login"
-    redirect_to login_path
   end
 end

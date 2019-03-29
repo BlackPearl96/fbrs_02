@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "books#index"
+  devise_for :users
 
   get "books/show", to: "books#show"
   get "books/find", to: "books#find"
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   get "password_resets/new"
   get "password_resets/edit"
   delete "/logout", to: "sessions#destroy"
+
   resources :books do
     resources :reviews do
       resources :comments

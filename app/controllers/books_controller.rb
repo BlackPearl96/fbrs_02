@@ -1,5 +1,4 @@
 class BooksController < ApplicationController
-  before_action :logged_in_user, except: %i(index filter search_like search)
   before_action :load_book, :build_like, except: %i(index filter create search search_like)
   before_action :admin_user, except: %i(index show filter search_like)
   before_action :load_books_by_category, only: %i(show filter)
@@ -43,13 +42,6 @@ class BooksController < ApplicationController
     return if @book
     flash[:danger] = t "controller.no_data_book"
     redirect_to books_path
-  end
-
-  def logged_in_user
-    return if logged_in?
-    store_location
-    flash[:danger] = t "please_login"
-    redirect_to login_path
   end
 
   def admin_user

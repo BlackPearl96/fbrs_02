@@ -26,6 +26,10 @@ en:
       author: "Authors"
       latest_book: "Latest Book"
       suggest: Suggest
+      searchlike: "List Like"
+      activities: "Activity"
+      admin: "Admin"
+      signup: "Sign Up"
     header_admin:
       sun*: "Sun Asterisk"
       hi: "Xin Chào, "
@@ -83,6 +87,9 @@ en:
       please_login: "Please Log in."
       following: "List Following"
       followers: "List Followers"
+      setuser: "Set user success"
+      setadmin: "Set admin success"
+      nofound: "Sorry. No found"
     sessions:
       error_login: "Invalid email/password combination"
       error_load_user: "Sorry, email does not exist"
@@ -259,3 +266,42 @@ your password will stay as it is."
       email: "Email"
       action: "Chức Năng"
       user: "Quản lý người dùng"
+  devise:
+    confirmations:
+      resend: "Resend confirmation instructions"
+      email: "email"
+    mailer:
+      welcome: "Welcome"
+      comfirm_account: "You can confirm your account email through the link below:"
+      confirm_my_account: "Confirm my account"
+      hello: "Hello"
+      notify: "We're contacting you to notify you that your email is being changed to "
+      someone_has_request: "Someone has requested a link to change your password. You can do this through the link below."
+      if_you_didn't: "If you didn't request this, please ignore this email."
+      password_won't_change: "Your password won't change until you access the link above and create a new one."
+      account_locked: " Your account has been locked due to an excessive number of unsuccessful sign in attempts."
+      click_link: "Click the link below to unlock your account:"
+      unlock_account: "Unlock my account"
+    passwords:
+      change_password: "Change your password"
+      new_pass: "New password"
+      confirm_pass: "Confirm your new password"
+      change_pass: "Change my password"
+      forgot_pass: "Forgot your password?"
+      send_reset_pass: "Send me reset password instructions"
+    registrations:
+      leave_it_blank: "leave it blank if you don't want to change it"
+      new-password: "new-password"
+      we_need_your_current: "we need your current password to confirm your changes"
+      current_password: "current-password"
+      cancel_my_account: "Cancel my account"
+      edit:
+        Update: "Update"
+      new:
+        Sign_up: "Sign Up"
+    sessions:
+      new:
+        Log_in: "Log in"
+    unlocks:
+      resend_unlock: "Resend unlock instructions"
+      resend_unlock_instructions: Resend unlock instructions"
