@@ -270,6 +270,9 @@ your password will stay as it is."
       email: "Email"
       action: "Chức Năng"
       user: "Quản lý người dùng"
+      new:
+        Sign_up: Sign Up
+        add_user: Add User
   devise:
     confirmations:
       resend: "Resend confirmation instructions"

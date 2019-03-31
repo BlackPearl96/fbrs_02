@@ -7,7 +7,7 @@
   <div class="review-comment" >
   <div class="review">
     <% if user_signed_in? && current_user?(review.user) %>
-      <div id="delete_<%=@book.id%>" class="links btn-group">
+      <div class="links btn-group">
         <%= link_to t("view.review.delete"), book_review_path(review.book, review),remote: true,
           method: :delete, class: "btn btn-success btn-md" %>
       </div>

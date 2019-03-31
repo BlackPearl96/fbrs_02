@@ -1,10 +1,11 @@
-<h2><% t ".Sign_up" %></h2>
+<h2><%= t ".add_user" %></h2>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= simple_form_for [:admin, @user] do |f| %>
       <%= f.error_notification %>
 
       <div class="form-inputs">
+        <%= f.select :role, options_for_select(select_roles) %>
         <%= f.input :name, required: true, autofocus: true %>
         <%= f.input :email, required: true, autofocus: true %>
         <%= f.input :phone, required: true, autofocus: true %>
@@ -13,14 +14,11 @@
           hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: t(".new-password") } %>
         <%= f.input :password_confirmation, required: true,
           input_html: { autocomplete: t(".new-password") } %>
-        <%= f.select :role, options_for_select(load_roles) %>
       </div>
 
       <div class="form-actions">
         <%= f.button :submit, t(".Sign_up"), class: "btn btn-primary" %>
       </div>
     <% end %>
-
-    <%= render "devise/shared/links" %>
   </div>
 </div>

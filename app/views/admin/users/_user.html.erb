@@ -1,9 +1,33 @@
-<tr class=" gradeX">
-  <td id="catId"><%= user.id %></td>
-  <td><%= user.name %></td>
-  <td><%= user.email %></td>
-  <td class="center">
-    <%= link_to t(".delete"), admin_user_path(user), method: :delete,
-     data:{confirm: t("sure")}, class: "fa fa-trash btn btn-danger " %>
-  </td>
-</tr>
+<div id="update_<%= user.id %>" >
+  <table>
+  <thead>
+    <tr>
+      <th class="id"><%= t ".id" %></th>
+      <th class="name"><%= t ".user_name" %></th>
+      <th><%= t ".email" %></th>
+      <th id="action-s"><%= t ".action" %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr class="gradeX">
+    <td id="catId"><%= user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <% if current_user.admin? && user.id == current_user.id %>
+      <td>Admin</td>
+    <% else %>
+      <td class="center">
+          <%= link_to t(".delete"), admin_user_path(user), method: :delete,
+           data:{confirm: t("sure")}, class: "fa fa-trash btn btn-danger " %>
+          <% if user.admin? %>
+            <%= link_to " set user", update_role_admin_user_path(user, value: :user),method: :patch, remote: true, class: "fa fa-check btn btn-success" %>
+          <%elsif user.user? %>
+            <%= link_to " set admin", update_role_admin_user_path(user, value: :admin),method: :patch, remote: true, class: "fa fa-check btn btn-success" %>
+          <% end %>
+
+      </td>
+    <% end %>
+  </tr>
+    </tbody>
+</table>
+</div>

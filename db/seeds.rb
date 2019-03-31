@@ -3,7 +3,6 @@ User.create!(name:  "Boss",
              password: "111111",
              password_confirmation: "111111",
              role: 1)
-
 20.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"

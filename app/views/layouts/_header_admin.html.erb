@@ -12,7 +12,7 @@
       <a class="navbar-brand" href="/"><%=t ".sun*" %></a>
     </div>
     <div class="khoi">
-      <%=link_to t( "layouts.header.logout"), logout_path, method: :delete, class: "btn btn-success btn-block square-btn-adjust" %>
+      <%=link_to t( "layouts.header.logout"), destroy_user_session_path, method: :delete, class: "btn btn-success btn-block square-btn-adjust" %>
     </div>
     <div class="khoi"> Xin chào, <b><%= current_user.name %></b> &nbsp; </div>
   </nav>

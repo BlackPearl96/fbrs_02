@@ -10,21 +10,6 @@ class UsersController < ApplicationController
 
   def show; end
 
-  # def update_role
-  #   if @user.admin?
-  #     @user.user!
-  #     flash[:success] = t "controller.user.setuser"
-  #     redirect_to request.referrer
-  #   elsif @user.user?
-  #     @user.admin!
-  #     flash[:success] = t "controller.user.setadmin"
-  #     redirect_to request.referrer
-  #   else
-  #     flash[:danger] = t "controller.user.nofound"
-  #     redirect_to request.referrer
-  #   end
-  # end
-
   def destroy
     if @user.destroy
       flash[:success] = t "controller.user.delete_user"

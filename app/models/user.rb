@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable,
+   :rememberable, :validatable
 
   attr_accessor :remember_token, :activation_token, :reset_token
   has_many :reviews, dependent: :destroy
@@ -40,4 +40,13 @@ class User < ApplicationRecord
     following.include? other_user
   end
 
+  def self.to_csv(options = {})
+    attributes = %w{id name email}
+    CSV.generate(options) do |csv|
+      csv << attributes
+      all.each do |user|
+        csv << attributes.map{|attr| user.send(attr)}
+      end
+    end
+  end
 end

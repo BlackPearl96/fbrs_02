@@ -6,23 +6,25 @@
       <div class="panel-body">
         <div class="table-responsive">
         <div class="row"></div>
+         <div class="gradeX">
+          Download:
+          <%= link_to " CSV", admin_users_path(format: "csv"), class: "fa fa-file-text-o btn btn-success" %> |
+          <%= link_to " Excel", admin_users_path(format: "xls"), class: "fa fa-file-excel-o  btn btn-success" %>
+        </div>
         <div>
           <br>
         </div>
-        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-          <thead>
-            <tr>
-              <th><%= t ".id" %></th>
-              <th class="name"><%= t ".user_name" %></th>
-              <th><%= t ".email" %></th>
-              <th class="action"><%= t ".action" %></th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= render @users %>
-            <%= will_paginate %>
-          </tbody>
-        </table>
+        <div>
+          Add users:
+          <%= link_to " Add User", new_admin_user_path, class: "fa fa-plus btn btn-success"  %>
+        </div>
+        <div>
+          <br>
+        </div>
+        <div>
+            <%= render partial: "user", collection: @users, as: :user %>
+        </div>
+          <%= will_paginate %>
         </div>
       </div>
     </div>
