@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :load_book, :build_like, :build_reviews, only: :show
   before_action :load_books_by_category, only: %i(show filter)
+  before_action :book_by_like, only: :search_like
   load_and_authorize_resource
 
   def index
@@ -18,8 +19,7 @@ class BooksController < ApplicationController
   def filter; end
 
   def search_like
-    @like_book_ids = current_user.likes.pluck(:book_id)
-    @search_like = Book.by_like_book @like_book_ids
+    @search_like = Book.by_like_book @book_like
   end
 
   def search
@@ -50,5 +50,9 @@ class BooksController < ApplicationController
 
   def build_reviews
     @review = @book.reviews.build
+  end
+
+  def book_by_like
+    @book_like = current_user.likes.pluck(:book_id)
   end
 end
