@@ -2,6 +2,7 @@ class LikesController < ApplicationController
   before_action :load_book, only: [:create, :destroy]
   before_action :load_unlike, only: :destroy
   load_and_authorize_resource
+
   def create
     unless check_like?
       @like = current_user.likes.create(book_id: @book.id)

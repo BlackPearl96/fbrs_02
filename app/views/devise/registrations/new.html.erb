@@ -13,7 +13,6 @@
           hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: t(".new-password") } %>
         <%= f.input :password_confirmation, required: true,
           input_html: { autocomplete: t(".new-password") } %>
-        <%= f.select :role, options_for_select(load_roles) %>
       </div>
 
       <div class="form-actions">

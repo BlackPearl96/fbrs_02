@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_29_041706) do
+ActiveRecord::Schema.define(version: 2019_04_01_032118) do
 
   create_table "activities", force: :cascade do |t|
     t.integer "target_id"
@@ -35,7 +35,9 @@ ActiveRecord::Schema.define(version: 2019_03_29_041706) do
     t.string "book_img_content_type"
     t.bigint "book_img_file_size"
     t.datetime "book_img_updated_at"
+    t.datetime "deleted_at"
     t.index ["category_id"], name: "index_books_on_category_id"
+    t.index ["deleted_at"], name: "index_books_on_deleted_at"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -43,6 +45,9 @@ ActiveRecord::Schema.define(version: 2019_03_29_041706) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.integer "status", default: 0
+    t.index ["deleted_at"], name: "index_categories_on_deleted_at"
   end
 
   create_table "comments", force: :cascade do |t|

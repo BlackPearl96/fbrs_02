@@ -53,6 +53,7 @@ en:
       created_at: "Created_at"
       status: "Status"
       action: "Action"
+      pls_login: Please Login!
     new:
       send: "Send"
       back: "Back"
@@ -262,7 +263,8 @@ your password will stay as it is."
       delete: " Delete"
       edit: "Sửa Danh Mục"
       name: "Tên Danh Mục"
-      add_category: "Add Category"
+      new:
+        add_category: "Add Category"
     users:
       delete: " Delete"
       id: "ID"

@@ -1,4 +1,5 @@
 class SuggestsController < ApplicationController
+  before_action :logged_in_user
   before_action :load_suggest, only: :destroy
   before_action :suggest_by_user, only: :index
   load_and_authorize_resource
@@ -46,5 +47,12 @@ class SuggestsController < ApplicationController
 
   def suggest_by_user
     @suggests = current_user.suggests.newest.by_suggest params[:user_id]
+  end
+
+  def logged_in_user
+    return if user_signed_in?
+    store_location
+    flash[:danger] = t ".pls_login"
+    redirect_to new_user_session_path
   end
 end

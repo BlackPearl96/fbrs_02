@@ -9,6 +9,6 @@ module ApplicationHelper
   end
 
   def select_roles
-    User.roles.keys.map {|role| [role.titleize,role]}
+    User.roles.keys.map {|role| [role.titleize, role]}
   end
 end

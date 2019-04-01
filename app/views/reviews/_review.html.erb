@@ -6,11 +6,13 @@
 
   <div class="review-comment" >
   <div class="review">
-    <% if user_signed_in? && current_user?(review.user) %>
+    <% if user_signed_in? %>
+      <% if can? :destroy, review %>
       <div class="links btn-group">
         <%= link_to t("view.review.delete"), book_review_path(review.book, review),remote: true,
           method: :delete, class: "btn btn-success btn-md" %>
       </div>
+      <% end %>
     <% end %>
     <% if review.comments.any? %>
       <% review.comments.each do |comment| %>

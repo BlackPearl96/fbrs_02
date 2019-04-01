@@ -1,10 +1,7 @@
 class BooksController < ApplicationController
-  before_action :load_book, :build_like, except: %i(index filter create search search_like)
-  before_action :admin_user, except: %i(index show filter search_like)
+  before_action :load_book, :build_like, :build_reviews, only: :show
   before_action :load_books_by_category, only: %i(show filter)
-  before_action :build_reviews, only: :show
   load_and_authorize_resource
-
 
   def index
     @books = Book.newest
@@ -13,7 +10,8 @@ class BooksController < ApplicationController
   end
 
   def show
-    return unless @reviews
+    @reviews = @book.reviews.ordered.paginate page: params[:page],
+      per_page: Settings.page_review
     @book.rate_points = @book.reviews.average(:rate)
   end
 
@@ -46,17 +44,11 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
-  def admin_user
-    redirect_to(root_url) unless current_user.admin?
-  end
-
   def load_books_by_category
     @books = Book.by_category(params[:category]).limit Settings.models.limit
   end
 
   def build_reviews
-    @review = current_user.reviews.build
-    @reviews = @book.reviews.ordered.paginate page: params[:page],
-      per_page: Settings.page_review
+    @review = @book.reviews.build
   end
 end

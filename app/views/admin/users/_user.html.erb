@@ -20,11 +20,10 @@
           <%= link_to t(".delete"), admin_user_path(user), method: :delete,
            data:{confirm: t("sure")}, class: "fa fa-trash btn btn-danger " %>
           <% if user.admin? %>
-            <%= link_to " set user", update_role_admin_user_path(user, value: :user),method: :patch, remote: true, class: "fa fa-check btn btn-success" %>
+            <%= link_to " set user", admin_user_path(user, value: :user),method: :patch, remote: true, class: "fa fa-check btn btn-success" %>
           <%elsif user.user? %>
-            <%= link_to " set admin", update_role_admin_user_path(user, value: :admin),method: :patch, remote: true, class: "fa fa-check btn btn-success" %>
+            <%= link_to " set admin", admin_user_path(user, value: :admin),method: :patch, remote: true, class: "fa fa-check btn btn-success" %>
           <% end %>
-
       </td>
     <% end %>
   </tr>

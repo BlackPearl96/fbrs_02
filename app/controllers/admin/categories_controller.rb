@@ -1,10 +1,11 @@
 class Admin::CategoriesController < Admin::BaseController
   layout "admin"
-  before_action :find_category, only: :destroy
+  before_action :find_category, only: %i(destroy update)
   load_and_authorize_resource
 
+
   def index
-    @categories = Category.sort_by_name.paginate page: params[:page],
+    @categories = Category.sort_by_name.with_deleted.paginate page: params[:page],
      per_page: Settings.per_page
   end
 
@@ -21,6 +22,16 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
+  def update
+    @category = Category.restore(params[:id], recursive: true)
+    if @category
+      flash[:success] = "undelete success"
+      redirect_to admin_categories_path
+    else
+      flash[:danger] = "cannot undelete"
+      redirect_to admin_categories_path
+    end
+  end
 
   def destroy
     if @category.destroy

@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-    def require_log_in
+  def require_log_in
     unless user_signed_in?
       flash[:danger] = t ".pls_login"
       redirect_to new_user_session_path

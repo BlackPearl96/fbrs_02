@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::BaseController
   layout "admin"
-  before_action :load_user, only: %i(destroy update_role)
+  before_action :load_user, only: %i(destroy update)
   load_and_authorize_resource
 
   def index
@@ -29,7 +29,7 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
-  def update_role
+  def update
     @user.role = params[:value]
     if @user.save
       respond_to do |format|

@@ -105,20 +105,20 @@
                         </div>
                       </div>
                       <% if user_signed_in? %>
-                      <div role="tabpanel" class="tg-tab-pane tab-pane active" id="review">
+                        <div role="tabpanel" class="tg-tab-pane tab-pane active" id="review">
+                          <div class="new-review-form">
+                            <%= render partial: "reviews/form", local:{book_id: @book} %>
+                          </div>
 
-                      <div class="new-review-form">
-                        <%= render partial: "reviews/form", local:{book_id: @book} %>
-                      </div>
-
-                      <div id="reviews" class="tg-description">
-                        <%= render partial: "reviews/review", collection: @reviews, as: :review %>
-                      </div>
-                        <div id="paginator">
-                          <%= paginate @reviews, remote: true %>
+                          <div id="reviews" class="tg-description">
+                            <%= render partial: "reviews/review", collection: @reviews, as: :review %>
+                          </div>
+                          <div id="paginator">
+                            <%= paginate @reviews, remote: true %>
+                          </div>
                         </div>
-
-                      </div>
+                      <% else %>
+                        Please log in to comments
                       <% end %>
                     </div>
                   </div>

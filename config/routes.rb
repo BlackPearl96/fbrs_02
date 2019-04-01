@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   get "books/show", to: "books#show"
-  get "books/find", to: "books#find"
+  get "books/filter", to: "books#filter"
   get "sessions/new"
   get "users/new"
   get "/signup", to: "users#new"
@@ -36,11 +36,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "static_pages#index"
     resources :books, except: :show
-    resources :categories, except: [:edit, :update, :show]
-    resources :users do
-      member do
-        patch :update_role
-      end
-    end
+    resources :categories
+    resources :users
   end
 end
