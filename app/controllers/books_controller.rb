@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :load_book, :build_like, :build_reviews, only: :show
   before_action :load_books_by_category, only: %i(show filter)
   before_action :book_by_like, only: :search_like
-  load_and_authorize_resource
+  before_action :set_search_book
 
   def index
     @books = Book.newest
@@ -20,10 +20,6 @@ class BooksController < ApplicationController
 
   def search_like
     @search_like = Book.by_like_book @book_like
-  end
-
-  def search
-    @books = Book.by_author_title params[:search]
   end
 
   private

@@ -32,6 +32,7 @@ gem "parallax-rails"
 gem "parallaxslider-rails"
 gem "popper_js", "~> 1.14.5"
 gem "puma", "~> 3.11"
+gem "ransack"
 gem "rails", "~> 5.2.2"
 gem "rails-i18n"
 gem "rubocop", "~> 0.54.0", require: false

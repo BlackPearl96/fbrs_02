@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_search_book, :configure_permitted_parameters, if: :devise_controller?
   include SessionsHelper
   include BooksHelper
 
@@ -25,5 +25,10 @@ class ApplicationController < ActionController::Base
       flash[:danger] = t ".pls_login"
       redirect_to new_user_session_path
     end
+  end
+
+  def set_search_book
+    @q = Book.ransack params[:q]
+    @books = @q.result.includes(:category, :likes, :reviews).newest
   end
 end

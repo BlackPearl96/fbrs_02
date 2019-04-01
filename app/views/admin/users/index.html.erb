@@ -6,21 +6,19 @@
       <div class="panel-body">
         <div class="table-responsive">
         <div class="row"></div>
+        <%= render "form" %>
+        <div> <br> </div>
          <div class="gradeX">
           Download:
           <%= link_to " CSV", admin_users_path(format: "csv"), class: "fa fa-file-text-o btn btn-success" %> |
           <%= link_to " Excel", admin_users_path(format: "xls"), class: "fa fa-file-excel-o  btn btn-success" %>
         </div>
-        <div>
-          <br>
-        </div>
+        <div> <br> </div>
         <div>
           Add users:
           <%= link_to " Add User", new_admin_user_path, class: "fa fa-plus btn btn-success"  %>
         </div>
-        <div>
-          <br>
-        </div>
+        <div> <br> </div>
         <div>
             <%= render partial: "user", collection: @users, as: :user %>
         </div>

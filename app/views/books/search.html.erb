@@ -1,0 +1,26 @@
+ <div class="tg-sectionspace tg-haslayout">
+  <div class="container">
+    <div class="row">
+      <div id="tg-twocolumns" class="tg-twocolumns">
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
+          <div id="tg-content" class="tg-content">
+            <% if @books.any? %>
+              <div class="tg-sectionhead">
+                <h2><span>Related Books</span>Search Results</h2>
+              </div>
+              <%= render @books %>
+            <% else %>
+              <div class="tg-sectionhead">
+                <h2><span>Related Books</span>Search Results</h2>
+              </div>
+              <h4>There are no books currently in this category</h4>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 pull-left">
+          <%= render "left" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

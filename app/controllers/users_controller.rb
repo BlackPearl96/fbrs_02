@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
   before_action :load_user, only: :show
   before_action :load_follow, :load_unfollow, only: %i(following followers show)
+  before_action :set_search_book
+  load_and_authorize_resource
+
 
   def index
     @users = User.sort_by_name.paginate page: params[:page],

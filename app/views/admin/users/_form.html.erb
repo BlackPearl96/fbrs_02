@@ -1,0 +1,9 @@
+<%= search_form_for @search, url: admin_users_path, method: :get do |f| %>
+  <div class="field">
+    <%= f.label :name_or_email_cont %>
+    <%= f.search_field :name_or_email_cont %>
+    <%= f.select :role_cont, options_for_select(User.roles),
+      prompt: t(".selection roles") %>
+    <%= f.button :submit, class: "btn btn-primary"  %>
+  </div>
+<% end %>
