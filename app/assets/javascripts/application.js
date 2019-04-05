@@ -23,3 +23,4 @@
 //= require jquery-ui
 //= require modernizr.custom.28468
 //= require jquery.cslider
+//= require jquery.raty

@@ -9,7 +9,7 @@
       <span>
       <div class="timestamp">
         <i><%= t "view.review.cmt" %> <%= time_ago_in_words(comment.created_at) %> <%= t "view.review.ago" %></i>
-        <% if current_user?(comment.user) %>
+        <% if current_user %>
           <%= link_to t("view.review.delete"), book_review_comment_path(@book, comment.review, comment), method: :delete, remote: true %>
         <% end %>
       </div>

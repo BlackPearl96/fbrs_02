@@ -1,0 +1,32 @@
+<%= render "layouts/left_admin" %>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
+    <h2>Quản lý yêu cầu</h2>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="table-responsive">
+            <div>
+              <br>
+            </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>index</th>
+                  <th>user name</th>
+                  <th>book name</th>
+                  <th>book category</th>
+                  <th>author</th>
+                  <th>created_at</th>
+                  <th>status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= render @suggests %>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

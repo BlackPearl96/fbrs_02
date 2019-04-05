@@ -1,4 +1,4 @@
-$(document).ready() {
+$(document).on("ready", function(){
   $("form").submit(function(event){
     event.preventDefault();
 
@@ -17,5 +17,4 @@ $(document).ready() {
       dataType: 'json'
     });
   });
-};
-
+});

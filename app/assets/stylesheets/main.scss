@@ -1736,7 +1736,9 @@ li.menu-item-has-mega-menu { position: static; }
 	height: 92%;
 	content: '';
 	position: absolute;
-	background: url('books/bookpattren.png') no-repeat;
+	// background:url(asset_path('books/bookpattren.png', image)) repeat-y;
+
+	background: asset-url("books/bookpattren.png") no-repeat;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-ms-background-size: 100% 100%;

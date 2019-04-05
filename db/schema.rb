@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_04_04_093306) do
 
-  create_table "activities", force: :cascade do |t|
+  create_table "activities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "target_id"
     t.integer "target_type"
     t.integer "type"
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 2019_04_04_093306) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "books", force: :cascade do |t|
-    t.integer "category_id"
+  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "category_id"
     t.string "title"
     t.text "content"
     t.text "description"
@@ -40,19 +40,18 @@ ActiveRecord::Schema.define(version: 2019_04_04_093306) do
     t.index ["deleted_at"], name: "index_books_on_deleted_at"
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "parent_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
-    t.integer "status", default: 0
     t.index ["deleted_at"], name: "index_categories_on_deleted_at"
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "review_id"
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "review_id"
     t.text "content"
     t.integer "reply"
     t.datetime "created_at", null: false
@@ -61,18 +60,18 @@ ActiveRecord::Schema.define(version: 2019_04_04_093306) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "book_id"
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_likes_on_book_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "marks", force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "user_id"
+  create_table "marks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "user_id"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -80,7 +79,7 @@ ActiveRecord::Schema.define(version: 2019_04_04_093306) do
     t.index ["user_id"], name: "index_marks_on_user_id"
   end
 
-  create_table "relationships", force: :cascade do |t|
+  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
     t.datetime "created_at", null: false
@@ -90,9 +89,9 @@ ActiveRecord::Schema.define(version: 2019_04_04_093306) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "user_id"
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "user_id"
     t.text "content"
     t.integer "rate"
     t.datetime "created_at", null: false
@@ -101,8 +100,8 @@ ActiveRecord::Schema.define(version: 2019_04_04_093306) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "suggests", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "suggests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "title"
     t.integer "status", default: 0
     t.text "content"
@@ -113,7 +112,7 @@ ActiveRecord::Schema.define(version: 2019_04_04_093306) do
     t.index ["user_id"], name: "index_suggests_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -132,4 +131,14 @@ ActiveRecord::Schema.define(version: 2019_04_04_093306) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "books", "categories"
+  add_foreign_key "comments", "reviews"
+  add_foreign_key "comments", "users"
+  add_foreign_key "likes", "books"
+  add_foreign_key "likes", "users"
+  add_foreign_key "marks", "books"
+  add_foreign_key "marks", "users"
+  add_foreign_key "reviews", "books"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "suggests", "users"
 end

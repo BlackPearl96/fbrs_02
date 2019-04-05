@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :load_user, only: :show
   before_action :load_follow, :load_unfollow, only: %i(following followers show)
-  before_action :set_search_book
   load_and_authorize_resource
 
 

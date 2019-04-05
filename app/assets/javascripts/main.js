@@ -20,19 +20,19 @@ $(document).on('turbolinks:load', function() {
     score: function(){
       return $(this).attr('data-score');
     },
-    path: '/assets/'
+    // path: '/'
   });
 
   $('.average_review-rating').raty({
     readOnly: true,
-    path: '/assets/',
+    // path: '/',
     score: function(){
       return $(this).attr('data-score');
     }
   });
 
   $('#rating-form').raty({
-    path: '/assets/',
+    // path: '/',
     scoreName: 'review[rate]'
   });
 	/* -------------------------------------
@@ -266,21 +266,21 @@ $(document).on('turbolinks:load', function() {
 	/* -------------------------------------
 			Google Map
 	-------------------------------------- */
-	jQuery("#tg-locationmap").gmap3({
-		marker: {
-			address: "1600 Elizabeth St, Melbourne, Victoria, Australia",
-			options: {
-				title: "Books Library",
-			}
-		},
-		map: {
-			options: {
-				zoom: 16,
-				scrollwheel: false,
-				disableDoubleClickZoom: true,
-			}
-		}
-	});
+	// jQuery("#tg-locationmap").gmap3({
+	// 	marker: {
+	// 		address: "1600 Elizabeth St, Melbourne, Victoria, Australia",
+	// 		options: {
+	// 			title: "Books Library",
+	// 		}
+	// 	},
+	// 	map: {
+	// 		options: {
+	// 			zoom: 16,
+	// 			scrollwheel: false,
+	// 			disableDoubleClickZoom: true,
+	// 		}
+	// 	}
+	// });
 	/*------------------------------------------
 			PRODUCT INCREASE
 	------------------------------------------*/

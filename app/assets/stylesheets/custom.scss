@@ -106,22 +106,22 @@ input:focus,
 .tg-support .tg-clientserviceicon i{color: #f16745;}
 
 .voilamdo{
-  background-image: url('parallax/bgparallax-04.jpg');
+  background-image: asset-url('parallax/bgparallax-04.jpg');
   background-attachment: fixed;
   background-size:cover;
 }
 .status1 {
-  background-image: url('parallax/bgparallax-01.jpg');
+  background-image: asset-url('parallax/bgparallax-01.jpg');
   background-attachment: fixed;
   background-size:cover;
 }
 .status2 {
-  background-image: url('parallax/bgparallax-02.jpg');
+  background-image: asset-url('parallax/bgparallax-02.jpg');
   background-attachment: fixed;
   background-size:cover;
 }
 .status3 {
-  background-image: url('parallax/bgparallax-03.jpg');
+  background-image: asset-url('parallax/bgparallax-03.jpg');
   background-attachment: fixed;
   background-size:cover;
 }
@@ -334,4 +334,12 @@ input#q_publisher_cont {
     width: 30%;
     float: left;
      margin: 5px;
+}
+
+textarea#book_content {
+  color: #000;
+}
+
+textarea#book_description {
+  color: #000;
 }
