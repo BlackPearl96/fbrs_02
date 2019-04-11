@@ -1,0 +1,36 @@
+<% provide :button_text, t(".add_book") %>
+<div id="page-inner">
+  <div class="row">
+    <div class="col-md-12">
+      <h2><%= t ".add_book" %></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-">
+        <div class="panel-body">
+          <div class="form-group">
+            <%= simple_form_for [:admin, @book],  html: {multipart: true}  do |f| %>
+              <div>
+                <%= f.select :category_id, options_for_select(load_categories_for_selectbox),
+                  prompt: "select a category" %>
+                <%= link_to "new category", new_admin_category_path, class: "btn btn-primary" %>
+              </div>
+              <%= f.hidden_field :suggest_id, value: @suggest.id %>
+              <%= f.file_field :book_img %>
+              <%= f.input :title, input_html: { value: @suggest.title } %>
+              <%= f.input :content %>
+              <%= f.input :description %>
+              <%= f.input :author, input_html: { value: @suggest.author } %>
+              <%= f.input :publisher %>
+              <%= f.input :rate_points %>
+              <%= f.input :number_pages %>
+              <%= f.button :submit, class: "btn btn-success" %>
+              <%= link_to "Back", admin_suggests_path, class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

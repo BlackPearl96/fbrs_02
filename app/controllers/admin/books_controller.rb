@@ -14,11 +14,19 @@ class Admin::BooksController < Admin::BaseController
 
   def create
     @book = Book.new book_params
+    @suggest.transaction do
+      @suggest.accepted! if @suggest
+    end
     if @book.save
-      redirect_to admin_books_path
+      flash[:success] = t ".save_book"
+      redirect_to admin_book_path(@book)
     else
+      flash[:danger] = t ".fail"
       render :new
     end
+  rescue Exception
+    flash[:danger] = t "controller.book.errors"
+    redirect_to admin_suggests_path(@suggest)
   end
 
   def edit; end
@@ -51,9 +59,16 @@ class Admin::BooksController < Admin::BaseController
   end
 
   def load_book
-    @book = Book.find_by_id params[:id]
+    @book = Book.find_by id: params[:id]
     return if @book
     flash[:danger] = t "messenger"
-    redirect_to admin_book_path
+    redirect_to admin_books_path
+  end
+
+  def load_suggest
+    @suggest = Suggest.find_by id: params[:book][:suggest_id]
+    return @suggest
+    flash[:danger] = t "not_found"
+    redirect_to admin_books_path
   end
 end

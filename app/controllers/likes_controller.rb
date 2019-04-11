@@ -16,7 +16,6 @@ class LikesController < ApplicationController
 
   def destroy
     if is_current_user_liked? && @unlike.destroy
-      # target_activity @unlike
       respond_to do |format|
         format.html{redirect_to request.referrer}
         format.js

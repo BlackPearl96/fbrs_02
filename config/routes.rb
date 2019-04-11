@@ -40,5 +40,6 @@ Rails.application.routes.draw do
     resources :books, except: :show
     resources :categories, except: [:edit, :update, :show]
     resources :users
+    resources :suggests
   end
 end

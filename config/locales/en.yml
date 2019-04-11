@@ -80,8 +80,12 @@ en:
     can't_rq: "can't request"
     undelete: "undelete success"
     not_undelete: "cannot undelete"
+    not_found: "sorry, not found"
     book:
       please_login: "Please Log in."
+      save_book: "save book success"
+      fail: "do not save book"
+      errors: "suggest is fail"
     user:
       create_user: "Welcome to the Sample App!"
       find_user_error: "Sorry, no data found user"

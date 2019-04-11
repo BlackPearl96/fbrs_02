@@ -2,7 +2,6 @@ class BooksController < ApplicationController
   before_action :load_book, :build_like, :build_reviews, only: :show
   before_action :load_books_by_category, only: %i(show filter)
   before_action :book_by_like, only: :search_like
-  before_action :set_search_book
 
   def index
     @books = Book.newest

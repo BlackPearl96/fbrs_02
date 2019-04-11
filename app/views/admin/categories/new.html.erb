@@ -1,26 +1,27 @@
-<div class="row">
-  <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
-    <div id="page-inner">
-      <div class="row">
-        <div class="col-md-12">
-          <h2><%= t ".edit" %></h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="form-group">
-                <label><%= t ".name" %></label>
-                <%= simple_form_for [:admin, @category], html: {multipart: true} do |f| %>
-                  <%= f.label :parent_id %>
-                  <%= f.text_field :parent_id %>
-                  <%= f.label :Category_name %>
-                  <%= f.text_field :name %>
-                  <%= f.submit t(".add_category"), class: "btn btn-success btn-md" %>
-                <% end %>
-              </div>
+<div id="page-inner">
+  <div class="row">
+    <div class="col-md-12">
+      <h2><%= t ".new" %></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="form-group">
+            <%= simple_form_for [:admin, @category], html: {multipart: true} do |f| %>
+            <div class="parent_id">
+              <%= f.label :parent_id %>
+              <%= f.text_field :parent_id %>
             </div>
+            <div class="category_name">
+              <%= f.label :Category_name %>
+              <%= f.text_field :name %>
+            </div>
+            <div class="action_category">
+              <%= f.submit t(".add_category"), class: "btn btn-success btn-md" %>
+            </div>
+            <% end %>
           </div>
         </div>
       </div>
